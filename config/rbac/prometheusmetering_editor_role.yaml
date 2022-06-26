@@ -1,0 +1,24 @@
+# permissions for end users to edit prometheusmeterings.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheusmetering-editor-role
+rules:
+- apiGroups:
+  - apps.ru.prometheus-metering-operator
+  resources:
+  - prometheusmeterings
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps.ru.prometheus-metering-operator
+  resources:
+  - prometheusmeterings/status
+  verbs:
+  - get

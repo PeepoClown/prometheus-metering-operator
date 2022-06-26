@@ -1,0 +1,20 @@
+# permissions for end users to view prometheusmeterings.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheusmetering-viewer-role
+rules:
+- apiGroups:
+  - apps.ru.prometheus-metering-operator
+  resources:
+  - prometheusmeterings
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.ru.prometheus-metering-operator
+  resources:
+  - prometheusmeterings/status
+  verbs:
+  - get

@@ -1,0 +1,30 @@
+apiVersion: apps.ru.prometheus-metering-operator/v1alpha1
+kind: PrometheusMetering
+metadata:
+  name: prometheusmetering-sample
+spec:
+  name: 'prom'
+  namespace: 'test'
+  replicasCount: 1
+  prometheusConfig:
+    globalConfig:
+      scrapeInterval: 10s
+      scrapeTimeout: 10s
+      evaluationInterval: 5s
+    remoteWrite: 
+      - url: http://zxcursed:9092
+    remoteRead:
+      - url: http://zxcursed:9091
+    scrapeJobs:
+      - jobName: 'first'
+        metricsPath: '/zxc'
+        scrapeInterval: 10s
+        scrapeTimeout: 10s
+        staticConfigs:
+          - targets: ['localhost']
+      - jobName: 'second'
+        metricsPath: '/zxc2'
+        scrapeInterval: 10s
+        scrapeTimeout: 10s
+        staticConfigs:
+          - targets: ['localhost2']
